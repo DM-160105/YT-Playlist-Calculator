@@ -72,6 +72,9 @@ export const metadata: Metadata = {
   alternates: {
     canonical: baseUrl,
   },
+  verification: {
+    google: "CNxHZu7NJws3hRiybE6G26POx2JSuuLK-A42WsLhi8E",
+  },
 };
 
 import { FloatingShareButton } from "@/components/floating-share-button";
