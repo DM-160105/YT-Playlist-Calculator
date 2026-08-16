@@ -1,5 +1,3 @@
-# See https://help.github.com/articles/ignoring-files/ for more about ignoring files.
-
 # dependencies
 /node_modules
 /.pnp
@@ -23,6 +21,8 @@
 # misc
 .DS_Store
 *.pem
+*.log
+bun-debug.log*
 
 # debug
 npm-debug.log*
@@ -30,8 +30,15 @@ yarn-debug.log*
 yarn-error.log*
 .pnpm-debug.log*
 
-# env files (can opt-in for committing if needed)
-.env*
+# env files (allow .env.example while keeping secrets local)
+.env
+.env*.local
+.env.local
+
+# gstack & IDE settings
+.gstack/
+.vscode/
+.idea/
 
 # vercel
 .vercel

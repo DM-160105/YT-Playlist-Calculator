@@ -6,23 +6,33 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "eslint"
+    "lint": "eslint",
+    "clean": "rm -rf .next",
+    "dev:clean": "rm -rf .next && next dev",
+    "update:deps": "npx -y npm-check-updates -u && bun install",
+    "update:next": "bun add next@latest react@latest react-dom@latest eslint-config-next@latest",
+    "update:all": "bun run update:deps"
   },
   "dependencies": {
-    "lucide-react": "^0.555.0",
-    "next": "16.0.10",
+    "@gsap/react": "^2.1.2",
+    "gsap": "^3.15.0",
+    "html2canvas": "^1.4.1",
+    "lucide-react": "^1.31.0",
+    "next": "16.3.1",
     "next-themes": "^0.4.6",
-    "react": "19.2.0",
-    "react-dom": "19.2.0"
+    "react": "19.2.8",
+    "react-dom": "19.2.8",
+    "sharp": "^0.35.3"
   },
   "devDependencies": {
     "@tailwindcss/postcss": "^4",
-    "@types/node": "^20",
+    "@types/node": "^26",
     "@types/react": "^19",
     "@types/react-dom": "^19",
-    "eslint": "^9",
-    "eslint-config-next": "16.0.6",
+    "baseline-browser-mapping": "^2.11.14",
+    "eslint": "^10",
+    "eslint-config-next": "16.3.1",
     "tailwindcss": "^4",
-    "typescript": "^5"
+    "typescript": "^7"
   }
 }
