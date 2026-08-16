@@ -1,111 +1,134 @@
-# YouTube Playlist Duration Calculator
+# 📺 YouTube Playlist Duration & Schedule Calculator
 
-A beautiful, modern, and professional web application designed to calculate the total duration of any YouTube playlist. Whether you're planning a study session, a movie marathon, or just curious about how long a tutorial series will take, this tool provides instant insights with a premium user experience.
+[![Next.js](https://img.shields.io/badge/Next.js-16.3.1-black?logo=next.js)](https://nextjs.org/)
+[![React](https://img.shields.io/badge/React-19.2.8-blue?logo=react)](https://react.dev/)
+[![TypeScript](https://img.shields.io/badge/TypeScript-7.0.2-blue?logo=typescript)](https://www.typescriptlang.org/)
+[![Tailwind CSS](https://img.shields.io/badge/Tailwind_CSS-v4.0-38bdf8?logo=tailwindcss)](https://tailwindcss.com/)
+[![Bun](https://img.shields.io/badge/Bun-v1.3.14-fbf0df?logo=bun)](https://bun.sh/)
+[![License](https://img.shields.io/badge/License-MIT-green.svg)](LICENSE)
 
-![Project Banner](https://images.unsplash.com/photo-1611162617474-5b21e879e113?q=80&w=1000&auto=format&fit=crop&ixlib=rb-4.0.3)
+A high-performance web application built with **Next.js 16 (App Router + Turbopack)** designed to calculate YouTube playlist lengths, multi-speed watch times (1x to 3x), custom daily finish date schedules, and generate server-rendered PNG share cards for social media.
 
-## 🚀 Features
+---
 
-- **Instant Duration Calculation**: Get the total length of any YouTube playlist in seconds.
-- **Multi-Speed Analysis**: Automatically calculates how long the playlist will take to watch at different playback speeds (1.25x, 1.5x, 1.75x, 2x).
-- **Average Video Duration**: See the average length of videos in the playlist.
-- **Video Count**: Displays the total number of videos in the playlist.
-- **Smart & Responsive UI**: Built with a mobile-first approach, ensuring it looks great on all devices.
-- **Dark Mode Support**: Seamlessly switches between light and dark themes for comfortable viewing.
-- **Visual Feedback**: Includes beautiful loading states, error handling, and smooth animations.
+## 🚀 Key Features
+
+- ⚡ **Universal YouTube Link Support**: Parses standard playlist links, short links (`youtu.be`), Shorts, embeds, videos within playlists, and raw IDs.
+- ⏱️ **Multi-Speed Duration Matrix**: Calculates total watch time and exact time saved across **1x, 1.25x, 1.5x, 1.75x, 2x, 2.5x, and 3x** playback speeds.
+- 📅 **Schedule Estimator & Finish Date Roadmap**: Set custom daily watch targets (`15m`, `30m`, `1h`, `2h`, `4h`) to receive exact estimated finish dates.
+- 🖼️ **Dynamic Social Share Card Generator**: Generates high-resolution 880px PNG summary cards on demand via `/api/share-card` using `sharp`.
+- 🚀 **High-Speed API Caching & Concurrent Execution**: Features an in-memory 1-hour LRU cache and `Promise.all` chunking for **0ms response latency** on repeated lookups.
+- 🌙 **Dark & Light Mode**: Fluid Theme Toggle supported via `next-themes` and Tailwind CSS v4.
+
+---
 
 ## 🛠️ Tech Stack
 
-This project is built using the latest modern web technologies to ensure performance, scalability, and developer experience.
+| Technology | Version | Purpose |
+| :--- | :--- | :--- |
+| **Next.js** | `16.3.1` | App Router framework with Turbopack & package import optimization |
+| **React** | `19.2.8` | UI Component rendering engine |
+| **TypeScript** | `7.0.2` | End-to-end type safety |
+| **Tailwind CSS** | `^4.0` | Modern utility-first styling |
+| **Lucide React** | `1.31.0` | Consistent UI icon system |
+| **Sharp** | `^0.35` | Server-side SVG to PNG image rendering |
+| **YouTube Data API** | `v3` | Metadata & video duration extraction |
 
-| Technology              | Description                                                    |
-| :---------------------- | :------------------------------------------------------------- |
-| **Next.js 16**          | The React Framework for the Web (App Router).                  |
-| **React 19**            | The library for web and native user interfaces.                |
-| **Tailwind CSS 4**      | A utility-first CSS framework for rapid UI development.        |
-| **TypeScript**          | Strongly typed programming language that builds on JavaScript. |
-| **Lucide React**        | Beautiful & consistent open-source icons.                      |
-| **YouTube Data API v3** | Official API to fetch playlist and video metadata.             |
+---
+
+## 📁 Project Structure
+
+```text
+YT-Playlist-Calculator/
+├── docs/                             # Diataxis Documentation Suite
+│   ├── tutorials/getting-started.md  # Step-by-step setup tutorial
+│   ├── how-to/calculate-watch-schedules.md # Schedule calculation guide
+│   ├── reference/api-and-architecture.md   # Complete API & route specs
+│   └── explanation/caching-and-performance.md # Caching architecture
+├── src/
+│   ├── app/                          # Next.js App Router
+│   │   ├── api/
+│   │   │   ├── playlist/route.ts     # YouTube API data endpoint
+│   │   │   └── share-card/route.ts   # PNG Share Card generation route
+│   │   ├── schedule/page.tsx         # Schedule Planner Page
+│   │   ├── layout.tsx                # Root layout & providers
+│   │   └── page.tsx                  # Home Playlist Calculator
+│   ├── components/                   # UI Components & Navigation
+│   ├── context/                      # Global Playlist State Context
+│   └── lib/                          # YouTube API & SVG Share Card utilities
+├── next.config.ts                    # Turbopack & package import config
+└── package.json                      # Dependencies & automated scripts
+```
+
+---
 
 ## 🏁 Getting Started
 
-Follow these steps to set up the project locally on your machine.
+### 1. Prerequisites
 
-### Prerequisites
+- **Node.js** (v18.0.0+) or **Bun** (v1.0.0+)
+- **YouTube Data API v3 Key** from [Google Cloud Console](https://console.cloud.google.com/)
 
-- **Node.js**: Ensure you have Node.js installed (v18 or higher recommended).
-- **YouTube Data API Key**: You need an API key from the [Google Cloud Console](https://console.cloud.google.com/).
-  1.  Create a project in Google Cloud Console.
-  2.  Enable the **YouTube Data API v3**.
-  3.  Create an API Key (Credentials).
+### 2. Environment Setup
 
-### Installation
+Create `.env.local` in the project root:
 
-1.  **Clone the repository:**
+```env
+YOUTUBE_API_KEY=your_youtube_api_key_here
+```
 
-    ```bash
-    git clone https://github.com/yourusername/yt-playlist-calculator.git
-    cd yt-playlist-calculator
-    ```
+### 3. Installation & Local Development
 
-2.  **Install dependencies:**
+```bash
+# Install dependencies
+bun install
 
-    ```bash
-    npm install
-    # or
-    yarn install
-    # or
-    pnpm install
-    # or
-    bun install
-    ```
+# Run dev server
+bun run dev
+```
 
-3.  **Configure Environment Variables:**
-    Create a `.env.local` file in the root directory and add your YouTube API Key:
+Open `http://localhost:3000` in your browser.
 
-    ```env
-    YOUTUBE_API_KEY=your_api_key_here
-    ```
+---
 
-4.  **Run the development server:**
+## 📜 Available NPM / Bun Scripts
 
-    ```bash
-    npm run dev
-    ```
+| Command | Action |
+| :--- | :--- |
+| `bun run dev` | Launch Next.js dev server with Turbopack (`http://localhost:3000`) |
+| `bun run build` | Build optimized production bundle |
+| `bun run start` | Start production server |
+| `bun run clean` | Clear `.next` build cache |
+| `bun run dev:clean` | Clear `.next` cache and launch dev server fresh |
+| `bun run update:deps` | Automatically check and update all dependencies to `@latest` |
+| `bun run update:next` | Automatically upgrade Next.js and React stack to `@latest` |
 
-5.  **Open the app:**
-    Navigate to (http://localhost:3000) in your browser.
+---
 
-## 💡 Usage
+## 📚 Documentation (Diataxis Framework)
 
-1.  **Find a Playlist**: Go to YouTube and copy the URL of a playlist (e.g., `https://www.youtube.com/playlist?list=PL...`) or just the Playlist ID.
-2.  **Paste & Calculate**: Paste the link into the input field on the home page and click **"Calculate Duration"**.
-3.  **View Results**:
-    - Top Section: Shows the playlist title, thumbnail, total videos, and average duration per video.
-    - Grid Section: Displays the total time required to watch the playlist at **Normal (1x)** speed, as well as **1.25x**, **1.5x**, **1.75x**, and **2x** speeds.
-
-## 📚 Documentation
-
-Detailed documentation structured according to the [Diataxis framework](https://diataxis.fr/):
+Comprehensive documentation is available in the [`docs/`](docs/) directory:
 
 | Quadrant | Document | Description |
 | :--- | :--- | :--- |
-| **Tutorial** | [`docs/tutorials/getting-started.md`](docs/tutorials/getting-started.md) | Step-by-step setup and first playlist calculation. |
-| **How-To Guide** | [`docs/how-to/calculate-watch-schedules.md`](docs/how-to/calculate-watch-schedules.md) | Calculate custom daily finish dates & export PNG share cards. |
-| **Reference** | [`docs/reference/api-and-architecture.md`](docs/reference/api-and-architecture.md) | Full API route specs, regex link parsing, and Next.js config specs. |
-| **Explanation** | [`docs/explanation/caching-and-performance.md`](docs/explanation/caching-and-performance.md) | Deep dive into `Promise.all` chunking & 1-hour LRU in-memory cache. |
+| 🎓 **Tutorial** | [`docs/tutorials/getting-started.md`](docs/tutorials/getting-started.md) | First-time setup, API key config, and initial playlist query. |
+| 🛠️ **How-To Guide** | [`docs/how-to/calculate-watch-schedules.md`](docs/how-to/calculate-watch-schedules.md) | How to calculate daily finish dates & export PNG summary cards. |
+| 📖 **Reference** | [`docs/reference/api-and-architecture.md`](docs/reference/api-and-architecture.md) | Technical specs for API routes, regex URL parser, and Next.js config. |
+| 💡 **Explanation** | [`docs/explanation/caching-and-performance.md`](docs/explanation/caching-and-performance.md) | Deep dive into `Promise.all` chunking and 1-hour LRU in-memory cache. |
+
+---
 
 ## 🤝 Contributing
 
-Contributions are welcome! If you'd like to improve this project, please follow these steps:
+Contributions are welcome!
+1. Fork the repo.
+2. Create your feature branch (`git checkout -b feature/AmazingFeature`).
+3. Commit your changes (`git commit -m 'feat: Add AmazingFeature'`).
+4. Push to the branch (`git push origin feature/AmazingFeature`).
+5. Open a Pull Request.
 
-1.  Fork the repository.
-2.  Create a new branch (`git checkout -b feature/YourFeature`).
-3.  Commit your changes (`git commit -m 'Add some feature'`).
-4.  Push to the branch (`git push origin feature/YourFeature`).
-5.  Open a Pull Request.
+---
 
 ## 📄 License
 
-This project is open source and available under the [MIT License](LICENSE).
-
+Distributed under the MIT License. See [`LICENSE`](LICENSE) for more information.
