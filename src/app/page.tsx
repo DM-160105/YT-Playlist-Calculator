@@ -490,9 +490,17 @@ Calculated via YT Playlist Calculator`;
         </section>
       </main>
 
-      <footer className="w-full border-t border-zinc-200/80 dark:border-zinc-800/80 py-6 sm:py-8 text-center text-xs text-zinc-500 dark:text-zinc-400 space-y-1.5 px-4">
-        <p className="font-semibold">YT Playlist Calculator • Free YouTube Playlist Duration & Speed Calculator</p>
-        <p className="opacity-80">Not affiliated with YouTube or Google LLC.</p>
+      <footer className="w-full border-t border-zinc-200/80 dark:border-zinc-800/80 py-8 sm:py-10 text-xs text-zinc-500 dark:text-zinc-400 space-y-4 px-4">
+        <div className="max-w-5xl mx-auto flex flex-wrap justify-center gap-4 sm:gap-6 font-medium text-zinc-700 dark:text-zinc-300">
+          <Link href="/" className="hover:text-red-500 transition-colors">Duration Calculator</Link>
+          <Link href="/schedule" className="hover:text-red-500 transition-colors">Schedule Estimator</Link>
+          <Link href="/speed-calculator" className="hover:text-red-500 transition-colors">Speed & Time Matrix</Link>
+          <Link href="/guide" className="hover:text-red-500 transition-colors">User Guide</Link>
+        </div>
+        <div className="text-center space-y-1">
+          <p className="font-semibold">YT Playlist Calculator • Free YouTube Playlist Duration & Speed Calculator</p>
+          <p className="opacity-80">Not affiliated with YouTube or Google LLC.</p>
+        </div>
       </footer>
     </div>
   );

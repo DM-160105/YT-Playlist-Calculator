@@ -1,20 +1,35 @@
-import type { Metadata } from 'next';
+import type { Metadata } from "next";
+import { getBaseUrl } from "@/lib/siteConfig";
 
-const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://yt-playlist-calculator.com';
+const baseUrl = getBaseUrl();
 
 export const metadata: Metadata = {
-  title: 'Playlist Watch Schedule Estimator | Daily, Weekly & Monthly Planner',
-  description: 'Estimate your completion date for any YouTube playlist. Set daily watch goals (15m, 30m, 1h, 2h/day) and calculate completion times at 1.25x, 1.5x, 2x, and 3x playback speeds.',
-  openGraph: {
-    title: 'YouTube Playlist Watch Schedule Estimator',
-    description: 'Calculate exact finish dates and daily/weekly/monthly schedules for YouTube playlists at any speed.',
-    url: `${baseUrl}/schedule`,
-  },
+  title: "YouTube Playlist Watch Schedule Estimator | Custom Target Finish Date",
+  description:
+    "Plan your YouTube course and playlist watch goals. Calculate exact completion dates based on daily watch time (15m, 30m, 1h, 2h) and playback speeds (1x to 3x).",
+  keywords: [
+    "youtube watch schedule planner",
+    "playlist finish date calculator",
+    "youtube course completion estimator",
+    "youtube daily study planner",
+    "binge watch completion time",
+  ],
   alternates: {
     canonical: `${baseUrl}/schedule`,
   },
+  openGraph: {
+    title: "YouTube Playlist Watch Schedule & Finish Date Estimator",
+    description:
+      "Set daily watch targets and get accurate projected finish dates with custom milestones.",
+    url: `${baseUrl}/schedule`,
+    type: "website",
+  },
 };
 
-export default function ScheduleLayout({ children }: { children: React.ReactNode }) {
+export default function ScheduleLayout({
+  children,
+}: {
+  children: React.ReactNode;
+}) {
   return <>{children}</>;
 }

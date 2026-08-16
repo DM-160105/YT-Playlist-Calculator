@@ -5,9 +5,11 @@ import { ThemeProvider } from "@/components/theme-provider";
 import { PlaylistProvider } from "@/context/PlaylistContext";
 import { SeoSchema } from "@/components/seo-schema";
 
+import { getBaseUrl, siteConfig } from "@/lib/siteConfig";
+
 const inter = Inter({ subsets: ["latin"], display: "swap" });
 
-const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://yt-playlist-calculator.com';
+const baseUrl = getBaseUrl();
 
 export const metadata: Metadata = {
   metadataBase: new URL(baseUrl),
@@ -15,21 +17,11 @@ export const metadata: Metadata = {
     default: "YouTube Playlist Duration Calculator | Calculate Binge Watch Time",
     template: "%s | YT Playlist Calculator",
   },
-  description: "Calculate exact YouTube playlist and video duration at 1x, 1.25x, 1.5x, 1.75x, 2x, 2.5x, and 3x playback speeds. Generate custom daily, weekly, monthly, and yearly watch schedule plans.",
-  keywords: [
-    "youtube playlist calculator",
-    "playlist duration calculator",
-    "calculate youtube playlist length",
-    "youtube watch time estimator",
-    "youtube speed calculator",
-    "youtube binge watch timer",
-    "playlist finish date calculator",
-    "how long is a youtube playlist",
-    "youtube watch schedule planner"
-  ],
-  authors: [{ name: "YT Playlist Calculator Team" }],
-  creator: "YT Playlist Calculator",
-  publisher: "YT Playlist Calculator",
+  description: siteConfig.description,
+  keywords: siteConfig.keywords,
+  authors: [{ name: siteConfig.author }],
+  creator: siteConfig.shortName,
+  publisher: siteConfig.shortName,
   formatDetection: {
     email: false,
     address: false,
@@ -39,9 +31,9 @@ export const metadata: Metadata = {
     type: "website",
     locale: "en_US",
     url: baseUrl,
-    siteName: "YT Playlist Calculator",
+    siteName: siteConfig.name,
     title: "YouTube Playlist Duration & Schedule Calculator",
-    description: "Find out exactly how long it takes to watch any YouTube playlist at any speed (1x to 3x). Get accurate daily, weekly, monthly, and yearly watch schedules.",
+    description: siteConfig.description,
     images: [
       {
         url: `${baseUrl}/icon.svg`,
@@ -54,7 +46,7 @@ export const metadata: Metadata = {
   twitter: {
     card: "summary_large_image",
     title: "YouTube Playlist Duration & Schedule Calculator",
-    description: "Calculate YouTube playlist & video length at any playback speed with custom daily watch schedules.",
+    description: siteConfig.description,
     creator: "@ytplaylistcalc",
     images: [`${baseUrl}/icon.svg`],
   },

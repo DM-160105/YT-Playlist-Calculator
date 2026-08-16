@@ -4,7 +4,7 @@ import { useState, useEffect, useRef } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { ModeToggle } from "./mode-toggle";
-import { Play, Calculator, Calendar, Menu, X, ArrowRight, Sparkles, CheckCircle2 } from "lucide-react";
+import { Play, Calculator, Calendar, Menu, X, ArrowRight, Sparkles, CheckCircle2, Zap, BookOpen } from "lucide-react";
 import { usePlaylist } from "@/context/PlaylistContext";
 import { useGSAP } from "@gsap/react";
 import gsap from "gsap";
@@ -83,6 +83,20 @@ export function Header() {
       icon: Calendar, 
       badge: result ? "1 Loaded" : undefined,
       description: "Plan daily, weekly & monthly watch goals"
+    },
+    { 
+      href: "/speed-calculator", 
+      label: "Speed & Time Matrix", 
+      shortLabel: "Speed Matrix", 
+      icon: Zap,
+      description: "Time savings converter & speed matrix"
+    },
+    { 
+      href: "/guide", 
+      label: "User Guide", 
+      shortLabel: "Guide", 
+      icon: BookOpen,
+      description: "How to calculate duration & course pacing"
     },
   ];
 

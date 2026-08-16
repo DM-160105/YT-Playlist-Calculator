@@ -1,7 +1,8 @@
 import { MetadataRoute } from 'next';
+import { getBaseUrl } from '@/lib/siteConfig';
 
 export default function sitemap(): MetadataRoute.Sitemap {
-  const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://yt-playlist-calculator.com';
+  const baseUrl = getBaseUrl();
   const lastModified = new Date();
 
   return [
@@ -16,6 +17,18 @@ export default function sitemap(): MetadataRoute.Sitemap {
       lastModified,
       changeFrequency: 'daily',
       priority: 0.9,
+    },
+    {
+      url: `${baseUrl}/speed-calculator`,
+      lastModified,
+      changeFrequency: 'weekly',
+      priority: 0.8,
+    },
+    {
+      url: `${baseUrl}/guide`,
+      lastModified,
+      changeFrequency: 'weekly',
+      priority: 0.8,
     },
   ];
 }

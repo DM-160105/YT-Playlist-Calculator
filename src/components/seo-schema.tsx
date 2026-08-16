@@ -1,17 +1,18 @@
 import React from 'react';
+import { getBaseUrl, siteConfig } from '@/lib/siteConfig';
 
 export function SeoSchema() {
-  const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://yt-playlist-calculator.com';
+  const baseUrl = getBaseUrl();
 
   const webAppSchema = {
     '@context': 'https://schema.org',
     '@type': 'WebApplication',
-    'name': 'YouTube Playlist Duration Calculator',
+    'name': siteConfig.name,
     'alternateName': 'YT Playlist Calculator & Schedule Estimator',
     'url': baseUrl,
-    'description': 'Free online YouTube playlist duration calculator. Find exact binge-watch length at 1x, 1.25x, 1.5x, 1.75x, 2x, 2.5x, and 3x playback speeds with custom daily, weekly, and monthly watch schedule planners.',
+    'description': siteConfig.description,
     'applicationCategory': 'MultimediaApplication',
-    'operatingSystem': 'Any',
+    'operatingSystem': 'All modern web browsers',
     'browserRequirements': 'Requires JavaScript. Requires HTML5.',
     'offers': {
       '@type': 'Offer',
@@ -23,7 +24,7 @@ export function SeoSchema() {
       'Multi-Speed Playback Analysis (1x to 3x)',
       'Time Saved Metrics Calculation',
       'Daily, Weekly, Monthly & Yearly Watch Schedule Estimator',
-      'Short URL & Video Link Support',
+      'Short URL (youtu.be) & Video Link Support',
       'Dark & Light Mode Support',
     ],
   };
@@ -31,7 +32,7 @@ export function SeoSchema() {
   const organizationSchema = {
     '@context': 'https://schema.org',
     '@type': 'Organization',
-    'name': 'YT Playlist Calculator',
+    'name': siteConfig.shortName,
     'url': baseUrl,
     'logo': `${baseUrl}/icon.svg`,
   };
@@ -43,7 +44,7 @@ export function SeoSchema() {
       {
         '@type': 'ListItem',
         'position': 1,
-        'name': 'Home / Duration Calculator',
+        'name': 'Duration Calculator',
         'item': baseUrl,
       },
       {
@@ -51,6 +52,18 @@ export function SeoSchema() {
         'position': 2,
         'name': 'Schedule Estimator',
         'item': `${baseUrl}/schedule`,
+      },
+      {
+        '@type': 'ListItem',
+        'position': 3,
+        'name': 'Speed & Time Matrix',
+        'item': `${baseUrl}/speed-calculator`,
+      },
+      {
+        '@type': 'ListItem',
+        'position': 4,
+        'name': 'User Guide',
+        'item': `${baseUrl}/guide`,
       },
     ],
   };
