@@ -84,6 +84,17 @@ Follow these steps to set up the project locally on your machine.
     - Top Section: Shows the playlist title, thumbnail, total videos, and average duration per video.
     - Grid Section: Displays the total time required to watch the playlist at **Normal (1x)** speed, as well as **1.25x**, **1.5x**, **1.75x**, and **2x** speeds.
 
+## 📚 Documentation
+
+Detailed documentation structured according to the [Diataxis framework](https://diataxis.fr/):
+
+| Quadrant | Document | Description |
+| :--- | :--- | :--- |
+| **Tutorial** | [`docs/tutorials/getting-started.md`](docs/tutorials/getting-started.md) | Step-by-step setup and first playlist calculation. |
+| **How-To Guide** | [`docs/how-to/calculate-watch-schedules.md`](docs/how-to/calculate-watch-schedules.md) | Calculate custom daily finish dates & export PNG share cards. |
+| **Reference** | [`docs/reference/api-and-architecture.md`](docs/reference/api-and-architecture.md) | Full API route specs, regex link parsing, and Next.js config specs. |
+| **Explanation** | [`docs/explanation/caching-and-performance.md`](docs/explanation/caching-and-performance.md) | Deep dive into `Promise.all` chunking & 1-hour LRU in-memory cache. |
+
 ## 🤝 Contributing
 
 Contributions are welcome! If you'd like to improve this project, please follow these steps:
@@ -97,3 +108,4 @@ Contributions are welcome! If you'd like to improve this project, please follow 
 ## 📄 License
 
 This project is open source and available under the [MIT License](LICENSE).
+
